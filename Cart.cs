@@ -7,7 +7,6 @@
         public void add(Product product, int quantity)
         {
             SubtotalPrice += (product.Price * quantity);
-            product.Quantity -= quantity;
             Item item = new Item(product, quantity);
             Items.Add(item);
         }

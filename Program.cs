@@ -11,6 +11,16 @@
                 return;
             }
 
+            foreach (var item in cart.Items)
+            {
+                if (item.Quantity > item.Product.Quantity)
+                {
+                    Console.WriteLine($"There is only {item.Product.Quantity} {item.Product.Name} in stock");
+                    return;
+                }
+            }
+
+
             decimal shippingFies = 0;
 
             foreach (var item in cart.Items)
@@ -23,10 +33,6 @@
 
             if (customer.Balance < totalPrice)
             {
-                foreach (var item in cart.Items)
-                {
-                    item.Product.Quantity += item.Quantity;
-                }
                 Console.WriteLine("Customer's balance is insucient");
                 return;
             }
@@ -54,6 +60,7 @@
             foreach (var item in cart.Items)
             {
                 Console.WriteLine($"{item.Quantity}x  {item.Product.Name}  {item.Product.Price * item.Quantity}");
+                item.Product.Quantity -= item.Quantity;
             }
 
             Console.WriteLine();
